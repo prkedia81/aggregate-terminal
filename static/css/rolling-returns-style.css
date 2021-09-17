@@ -1,0 +1,87 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    background-image: url(../images/bg-tablet-pattern.svg),
+      url(../images/bg-tablet-pattern.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right 61rem bottom -51rem, right -14rem top -22rem;
+  }
+  
+  /* Main Body */
+  main {
+    margin-top: 80px;
+    padding: 30px 60px;
+  }
+  
+  /* .card-element {
+      background: #d2d2d2;
+      border: 1px solid #4b4b4b;
+  } */
+  
+  h1 {
+    font-weight: 700;
+  }
+  
+  .dropdown button {
+      margin: 10px;
+  }
+  
+  .remove {
+      margin: 5px 20px;
+  }
+  
+  /* Tooltip Section */
+  .fa-info-circle {
+    color: #333;
+  }
+  
+  .avatar {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .avatar::before,
+  .avatar::after {
+    --scale: 0;
+    --arrow-size: 7px;
+    --tooltip-color: rgba(0, 0, 0, 0.8);
+  
+    position: absolute;
+    top: -0.25rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(var(--translate-y, 0))
+      scale(var(--scale));
+    transition: 150ms transform;
+    transform-origin: bottom center;
+    font-size: 0.78rem;
+    font-weight: 500;
+    /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .avatar::before {
+    --translate-y: calc(-100% - var(--arrow-size));
+  
+    content: attr(data-tooltip);
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    text-align: center;
+    width: max-content;
+    /* max-width: 100%; */
+    background: var(--tooltip-color);
+  }
+  
+  .avatar:hover::before,
+  .avatar:hover::after {
+    --scale: 1;
+  }
+  
+  .avatar::after {
+    --translate-y: calc(-1 * var(--arrow-size));
+  
+    content: "";
+    border: var(--arrow-size) solid transparent;
+    border-top-color: var(--tooltip-color);
+    transform-origin: top center;
+    /* box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); */
+  }
+  

@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@400;500;600;700&display=swap");
+
+/* Footer */
+footer {
+  padding: 2rem;
+  padding-bottom: 0.5rem;
+  background-color: hsl(233, 12%, 13%);
+  width: 120%;
+  margin: 0;
+  font-family: "Be Vietnam", sans-serif;
+}
+
+footer img {
+  margin: 0.8rem;
+}
+
+footer p {
+  color: hsl(0, 0%, 91%);
+}
+
+footer .social-icons a {
+  margin: 8px;
+  font-size: 25px;
+  color: color: hsl(0, 0%, 91%);
+}
+
+footer .social-icons a:hover {
+  color: #f35221;
+  transition: ease-in-out 0.2s;
+}
+
+footer ul {
+  list-style-type: none;
+  justify-item: center;
+}
+
+footer li a {
+  text-decoration: none;
+  color: color: hsl(0, 0%, 91%);
+}
+
+footer li a:hover {
+  color: #f35221;
+  transition: ease-in 0.1s;
+}

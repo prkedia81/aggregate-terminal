@@ -1,0 +1,149 @@
+{% include 'head.html' %}
+
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/rolling-returns-style.css')}}" />
+    <title>Rolling Returns</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <!-- Navigation Bar -->
+        {% include 'navbar.html' %}
+    </header>
+
+    <main>
+        <div class="row text-center">
+            <div class="col-12">
+                <h1>Rolling Returns</h1>
+                <hr>
+            </div>
+        </div>
+
+        <div class="rolling">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search Mutual Fund" aria-label="Search" disabled>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                </div>
+
+                <div class="col-lg-1"></div>
+                <div class="col-lg-4">
+                    <div class="dropdown">
+                        <a class="btn btn-outline-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          Add Benchmark/Index (Optional)
+                        </a>
+                      
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <li><a class="dropdown-item" href="#">Nifty 100</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty 100 Quality 20</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty 200</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty 50</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty 50 Value 20</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty 500</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Bank</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Commodities</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Consumption</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Div Opps 50</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Financial Services</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty FMCG</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Infra</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty IT</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Midcap 100</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Midcap 50</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty MNC</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Next 50</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Pharma</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty PSU Bank</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Serv Sector</a></li>
+                          <li><a class="dropdown-item" href="#">Nifty Small Cap 100</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE 100</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE 200</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE 500</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE Health Care</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE IT</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE Metal Index</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE Mid Cap</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE MidSmall Cap</a></li>
+                          <li><a class="dropdown-item" href="#">S&P BSE Oil & Gas</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>  
+            <br><br>
+             <div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+              </symbol>
+              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+              </symbol>
+              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+              </symbol>
+            </svg>
+
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
+              <div>
+                <span class="fw-bold">Currently the MF Rolling Returns displays only 1 fund</span> <br>
+                The search bar has been disabled. 5 year Rolling Returns for Kotak Flexi Cap Fund has been displayed from 14th Sept 2009 to 20th May 2021.
+              </div>
+            </div>
+          </div>
+
+            <div class="graph text-center">
+                <img src="{{url_for('static', filename='images/kotak-fund-rolling-return.png')}}" style="width:80%;">
+            </div>
+            <br><br>
+
+            <div class="table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fund Name</th>
+                            <th>Average</th>
+                            <th>Maximum</th>
+                            <th>Minimum</th>
+                            <th>Less than 0%</th>
+                            <th>0-10%</th>
+                            <th>10-20%</th>
+                            <th>20-30%</th>
+                            <th>More than 30%</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="col">Kotak Flexicap Fund (D)</td>
+                            <td>16.17%</td>
+                            <td>24.91%</td>
+                            <td>0.78%</td>
+                            <td>0.00</td>
+                            <td>10.85</td>
+                            <td>63.38</td>
+                            <td>25.78</td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr>
+                            <td scope="col">Nifty 200 TRI</td>
+                            <td>12.03%</td>
+                            <td>20.46%</td>
+                            <td>-1.25%</td>
+                            <td>0.12</td>
+                            <td>30.65</td>
+                            <td>68.86</td>
+                            <td>0.37</td>
+                            <td>0.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    {% include 'footer.html' %}
+</body>
+
+</html>

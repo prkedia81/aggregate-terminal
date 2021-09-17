@@ -1,0 +1,947 @@
+{% include 'head.html' %}
+<head>
+    <title>{{ info['symbol'] }}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/ticker-style.css')}}" />
+</head>
+
+<body>
+    <header>
+        <!-- Left Navigation Bar/ In-page Navigation Bar -->
+
+
+        <!-- Top Navigation Bar -->
+        {% include 'navbar.html' %}
+    </header>
+
+    <main class="grid-container">
+        <!-- Ticker Data -->
+        <div class="" id="ticker">
+            <p class="comp-name">{{ info['name'] }}</p>
+            <p class="ticker-data">
+                BSE: <strong><a class="stock-exchange">*****</a></strong> NSE:
+                <strong><a class="stock-exchange">{{ info['symbol'] }}</a></strong> Sector: <strong><a href="" class="sector">{{ info['industry'] }}</a></strong>
+            </p>
+        </div>
+
+        <!-- 1. General Section -->
+        <div id="general-section">
+            <div class="general-grid">
+                <!-- Price Data -->
+                <div id="price" class="card-element">
+                    <p class="section-heading">Price Summary</p>
+                    <div class="row">
+                        <div class="col">
+                            <p class="unit-heading">Today's High</p>
+                            <p class="value">₹ {{ info['day_high'] }}</p>
+                        </div>
+                        <div class="col">
+                            <p class="unit-heading">Today's Low</p>
+                            <p class="value">₹ {{ info['day_low'] }}</p>
+                        </div>
+                        <div class="col">
+                            <p class="unit-heading">52 wk High</p>
+                            <p class="value">₹ {{ info['52_wk_high'] }}</p>
+                        </div>
+                        <div class="col">
+                            <p class="unit-heading">52 wk Low</p>
+                            <p class="value">₹ {{ info['52_wk_low'] }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strength/ Weakness -->
+                <div id="strength-weakness" class="card-element">
+                    <p class="section-heading">Strengths/ Weaknesses</p>
+                    <p class="unit-heading">Strengths</p>
+                    <ul>
+                        <li><em>To be Updated</em></li>
+                    </ul>
+                    <p class="unit-heading">Weakness</p>
+                    <ul>
+                        <li><em>To be Updated</em></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Company Essentials -->
+            <div id="company-essentials" class="card-element">
+                <p class="section-heading">Company Essentials</p>
+                <div class="row">
+                    <div class="col">
+                        <p class="unit-heading">Market Cap<a class="avatar" data-tooltip="Price of Share x No. of Shares Outstanding" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ {{ info['market_cap'] }} Cr</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">Ent Value<a class="avatar" data-tooltip="Market Cap + Debt - Cash" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ {{ info['enterprise_value'] }} Cr</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">No. of Shares<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['shares_outstanding']/10000000 }} Cr</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="unit-heading">P/E<a class="avatar" data-tooltip="Price of Share / EPS" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['price_to_earnings'] }}</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">P/B<a class="avatar" data-tooltip="Price of Share / Book Value" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['price_to_book'] }}</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">EPS<a class="avatar" data-tooltip="Net Earnings / No. of Shares" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ {{ info['eps'] }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="unit-heading">Div Yield<a class="avatar" data-tooltip="Annual Dividend Per Share / Current Share Price" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['dividend_yield'] }}%</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">5 Yr CAGR<a class="avatar" data-tooltip="Return generated per year for 5 years" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['five_yr_avg_return'] }}%</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">Book Value<a class="avatar" data-tooltip="Stockholders' Equity / Shares Outstanding" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ {{ info['book_value'] }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="unit-heading">Cash<a class="avatar" data-tooltip="Balance Sheet Line Item" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ {{ info['cash'] }} Cr</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">Debt<a class="avatar" data-tooltip="Short Term + Long Term Debt" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ {{ info['debt'] }} Cr</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">Face Value<a class="avatar" data-tooltip="Nominal Value of stocks at the time of issuance" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">₹ 1</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="unit-heading">Prom. Holding<a class="avatar" data-tooltip="Percentage of shares held by the promoters" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['insider_holding'] }}%</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">Debt to Equity<a class="avatar" data-tooltip="Total Liability / Shareholders' Equity" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['debt_to_equity'] }}%</p>
+                    </div>
+                    <div class="col">
+                        <p class="unit-heading">ROE<a class="avatar" data-tooltip="Net Income / Shareholders' Equity" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="value">{{ info['roe'] }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Ratio Analysis -->
+        <div id="ratio-analysis" class="card-element">
+            <div class="grid-container">
+                <p class="section-heading">Ratio Analysis</p>
+
+                <!-- Dropdown for a list of Ratios/ Metric -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-default px-5" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                        Add Your Metrics
+                    </button>
+                    <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton1">
+                        <li>
+                            <p class="unit-heading"><b>Search for a Metric</b></p>
+                        </li>
+                        <form class="d-flex">
+                            <input class="form-control mb-2" type="search" placeholder="" />
+                        </form>
+                        <hr>
+                        <li><a class="dropdown-item" href="#">Face Value</a></li>
+                        <li><a class="dropdown-item" href="#">Free Cash Flow</a></li>
+                        <li><a class="dropdown-item" href="#">Debt</a></li>
+                        <li><a href="#" class="dropdown-item">Promoter Holding</a></li>
+                    </ul>
+                </div>
+
+                <!-- Remove Ratios which have been added -->
+                <button type="button" class="btn btn-danger btn-sm">Remove Metrics</button>
+                <br />
+            </div>
+
+            <div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+              </symbol>
+              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+              </symbol>
+              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+              </symbol>
+            </svg>
+
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
+              <div>
+                <span class="fw-bold">This is a representative of the real data. Do not use for analysis</span>
+              </div>
+            </div>
+          </div>
+
+            <!-- Metrics which are added -->
+            <div class="metric-grid-container">
+                <div class="metric">
+                    <p class="unit-heading">GPM Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="value">25.81</p>
+                </div>
+
+                <div class="metric">
+                    <p class="unit-heading">DEBTORS TURNOVER Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="value">6.89</p>
+                </div>
+
+                <div class=" metric">
+                    <p class="unit-heading">RECEIVABLE DAYS Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="value">53.01</p>
+                </div>
+
+                <div class="col metric">
+                    <p class="unit-heading">ASSET TURNOVER Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="value">0.66</p>
+                </div>
+
+                <div class="col metric">
+                    <p class="unit-heading">PAYABLE TURNOVER <a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>                    
+                    <p class="value">7.12</p>
+                </div>
+
+                <div class="col metric">
+                    <p class="unit-heading">CASH AT START<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="value">564.17</p>
+                </div>
+
+                <div class="col metric">
+                    <p class="unit-heading">BORROWINGS<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="value">0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Price Chart & P/E Chart (options of EPS and Volume) -->
+        <div id="price-charts" class="card-element">
+            <div class="row">
+                <!-- Price Chart -->
+                <div class="col col-lg-6 price-vol">
+                    <p class="section-heading">Price Chart</p>
+
+                    <!-- Time Option -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">1d</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1w</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">3m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">6m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">3Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">5Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Max</a>
+                        </li>
+                    </ul>
+
+                    <!-- Price Graph -->
+                    <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                        src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+
+                    <!-- Volume Option & CAGR for given period -->
+                    <div class="row graph-options">
+                        <div class="col cagr">CAGR: 26.60%</div>
+
+                        <div class="col vol">
+                            <input type="checkbox" name="Volume" id="volume" />
+                            <label for="Volume">Volume</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- P/E & EPS -->
+                <div class="col col-lg-6">
+                    <p class="section-heading">PE Ratio</p>
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+
+                    <!-- Time Option -->
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">1d</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1w</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">3m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">6m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">3Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">5Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Max</a>
+                        </li>
+                    </ul>
+
+                    <!-- PE Ratio Graph -->
+                    <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                        src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+
+                    <!-- EPS Option -->
+                    <div class="eps graph-options">
+                        <input type="checkbox" name="Volume" id="volume" />
+                        <label for="Volume">EPS</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Plot Your Own Chart -->
+        <div id="your-chart" class="card-element">
+            <p class="section-heading">Plot Your Own Chart</p>
+
+
+            <!-- Metric Chosen & Graph -->
+            <div class="row">
+                <!-- Choose Metric -->
+                <div class="col col-lg-3 metric-choice">
+
+                    <!-- Dropdown to add Metrics -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-primary dropdown-toggle btn-sm btn-default px-5" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                            Add Your Metrics
+                        </button>
+                        <ul class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton1">
+                            <li>
+                                <p class="unit-heading">Search for a Metric</p>
+                            </li>
+                            <form class="d-flex">
+                                <input class="form-control me-2" type="search" placeholder="" />
+                            </form>
+                            <hr>
+                            <li>
+                                <a class="dropdown-item" href="#">Operating Profit Margin</a>
+                            </li>
+                            <li><a class="dropdown-item" href="#">Free Cash Flow</a></li>
+                            <li><a class="dropdown-item" href="#">Debt</a></li>
+                            <li><a href="#" class="dropdown-item">Promoter Holding</a></li>
+                            <li><a href="#" class="dropdown-item">EPS</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics-added">
+                        <ol>
+                            <li>Free Cash Flow
+                                <div class="avatar" data-tooltip="Dummy Data">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                            </li>
+                            <li>Debt
+                                <div class="avatar" data-tooltip="Dummy Data">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <button type="button" class="btn btn-danger btn-sm px-5 remove">Remove Metrics</button>
+
+                    <hr />
+                    <input type="radio" name="plot-type" id="plot-type" />
+                    <label for="plot-type">Percentage Change</label>
+                    <br />
+                    <input type="radio" name="plot-type" id="plot-type" />
+                    <label for="plot-type">Absolute Change</label>
+                </div>
+
+                <!-- Graph for the metric which is chosen -->
+                <div class="col col-lg-9">
+                    <!-- Time Option -->
+                    <ul class="nav nav-tabs justify-content-end">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">3m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">6m</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">1Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">3Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">5Yr</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">Max</a>
+                        </li>
+                    </ul>
+                    <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                        src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Peer Comparison -->
+        <div id="peer-comparison" class="card-element">
+            <p class="section-heading">Peer Comparison</p>
+
+            <table class="table table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Company</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Market Cap</th>
+                        <th scope="col">P/E</th>
+                        <th scope="col">EPS</th>
+                        <th scope="col">ROE%</th>
+                        <th scope="col">ROCE%</th>
+                        <th scope="col">EBITDA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="col">{{ info['name'] }}</td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                        <td><span class="placeholder col-12"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 6. Shareholder Pattern -->
+        <div id="shareholder-pattern" class="card-element">
+            <p class="section-heading">Shareholding Pattern</p>
+            <p>All Numbers in Percentage</p>
+
+            <!-- Shareholder Table -->
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Particulars</th>
+                        <th scope="col">Sep 2020</th>
+                        <th scope="col">Dec 2020</th>
+                        <th scope="col">Mar 2021</th>
+                        <th scope="col">June 2021</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="col">Promoters</td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td scope="col">FII</td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td scope="col">DII</td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Government</td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td scope="col">Public</td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 7. Financials -->
+        <div id="financials" class="card-element">
+            <p class="section-heading">Financials</p>
+
+            <!-- Financial Statement -->
+            <!-- Time Option -->
+            <ul class="nav nav-tabs nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Balance Sheet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Income Statement</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Cash Flow Statement</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 8. Corporate Actions -->
+        <div id="corp-action" class="card-element">
+            <p class="section-heading">Corporate Action</p>
+
+            <!-- Time Option -->
+            <ul class="nav nav-tabs justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">
+                        Dividend
+                        <div class="avatar" data-tooltip="Dummy Data">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Bonus
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Rights
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">Split
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </a>
+                </li>
+            </ul>
+
+            <!-- Dividend Table -->
+            <table class="table table-hover" id="dividend-table">
+                <thead class="table-primary">
+                    <tr>
+                        <th scope="col">Ex Date</th>
+                        <th scope="col">Record Date</th>
+                        <th scope="col">Dividend %</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                    <tr>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                        <td scope="col"><span class="placeholder col-12"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Bonus Table -->
+            <!-- <table class="table table-hover" id="bonus-table">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Ex Date</th>
+        <th scope="col">Record Date</th>
+        <th scope="col">Dividend %</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+    </tbody> -->
+            </table>
+
+            <!-- Rights Table -->
+            <!-- <table class="table table-hover" id="rights-table">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Ex Date</th>
+        <th scope="col">Record Date</th>
+        <th scope="col">Dividend %</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+    </tbody>
+  </table> -->
+
+            <!-- Splits Table -->
+            <!-- <table class="table table-hover" id="splits-table">
+    <thead class="table-primary">
+      <tr>
+        <th scope="col">Ex Date</th>
+        <th scope="col">Record Date</th>
+        <th scope="col">Dividend %</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+      <tr>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+        <td scope="col"><span class="placeholder col-12"></span></td>
+      </tr>
+    </tbody>
+  </table> -->
+        </div>
+
+        <!-- 9. Company Filings -->
+        <div id="filings" class="">
+            <div class="grid-container">
+                <!-- Annual Reports -->
+                <div class="card-element annual-reports">
+                    <p class="section-heading">Annual Reports</p>
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#" class="ar">Annual Report 2020</a>
+                        </li>
+                        <li>
+                            <a href="#" class="ar">Annual Report 2019</a>
+                        </li>
+                        <li>
+                            <a href="#" class="ar">Annual Report 2018</a>
+                        </li>
+                        <li>
+                            <a href="#" class="ar">Annual Report 2017</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Ratings and Research Reports -->
+                <div class="card-element rating-research">
+                    <p class="section-heading">Ratings & Research Reports</p>
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle" style="color: white;"></i>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#" class="cred-rating">Report By: Crisil</a>
+                        </li>
+                        <li>
+                            <a href="#" class="research">BOB Capital Market</a>
+                        </li>
+                        <li>
+                            <a href="#" class="research">ICICI Securities</a>
+                        </li>
+                        <li>
+                            <a href="#" class="research">Motilal Oswal</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Company Presentations -->
+                <div class="card-element comp-pres">
+                    <p class="section-heading">Company Presentations</p>
+                    <div class="avatar" data-tooltip="Dummy Data">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="#" class="concall">Q4FY21</a>
+                        </li>
+                        <li>
+                            <a href="#" class="concall">Q4FY20</a>
+                        </li>
+                        <li>
+                            <a href="#" class="presentation">Q4FY21</a>
+                        </li>
+                        <li>
+                            <a href="#" class="presentation">Q4FY20</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. About The Company -->
+        <div id="about-the-company" class="card-element">
+            <p class="section-heading">Brief about {{ info['name'] }}</p>
+            <p>
+               {{ info['about_business'] }}
+            </p>
+        </div>
+
+        <!-- 11. Corporate Governance -->
+        <div id="corporate-gov" class="card-element">
+            <p class="section-heading">Corporate Governance</p>
+
+
+            <div class="avatar" data-tooltip="Dummy Data">
+                <i class="fas fa-info-circle"></i>
+            </div>
+
+            <div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+              </symbol>
+              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+              </symbol>
+              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+              </symbol>
+            </svg>
+
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
+              <div>
+                <span class="fw-bold">This is a representative of the real data. Do not use for analysis</span>
+              </div>
+            </div>
+          </div>
+
+            <div class="row">
+                <div class="col col-lg-8">
+                    <h5>Judgement Criteria</h5>
+                    <ol>
+                        <li>Number of Board Members</li>
+                        <li>Number of Independent Board Members</li>
+                        <li>Promoter Holding</li>
+                        <li>CEO Holding</li>
+                        <li>Activist Investor</li>
+                        <li>Shareholder Friendly Activities in recent past</li>
+                    </ol>
+                </div>
+
+                <!-- Corporate Governance Score Explainer -->
+                <div class="col col-lg-4">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <th>Score</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr class="table-danger">
+                                <td>&lt;4</td>
+                                <td>Not Shareholder Friendly</td>
+                            </tr>
+                            <tr class="table-warning">
+                                <td>4-7</td>
+                                <td>Acceptable Corporate Governance</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>7+</td>
+                                <td>Shareholder Friendly Company</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h5 style="font-weight:600;">Aggregate Corporate Governance Score: 8/10</h5>
+        </div>
+
+        <!-- 12. Discounted Cash Flow Valuation -->
+        <div id="dcf-valuation" class="card-element">
+            <p class="section-heading">Discounted Cash Flow Valuation</p>
+
+            <div class="avatar" data-tooltip="Dummy Data">
+                <i class="fas fa-info-circle"></i>
+            </div>
+        </div>
+
+        <!-- 13. DuPont Analysis -->
+        <div id="dupont-analysis" class="card-element">
+            <p class="section-heading">DuPont Analysis</p>
+
+            <div class="avatar" data-tooltip="Dummy Data">
+                <i class="fas fa-info-circle"></i>
+            </div>
+        </div>
+
+        <!-- 14. Analyst Estimates -->
+        <div id="analyst-estimates" class="card-element">
+            <p class="section-heading">Analyst Estimates</p>
+
+            <div class="avatar" data-tooltip="Dummy Data">
+                <i class="fas fa-info-circle"></i>
+            </div>
+
+            <div>
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
+              </symbol>
+              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
+              </symbol>
+              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+              </symbol>
+            </svg>
+
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
+              <div>
+                <span class="fw-bold">Not available in the prototype!</span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    {% include 'footer.html' %}
+</body>
+
+</html>

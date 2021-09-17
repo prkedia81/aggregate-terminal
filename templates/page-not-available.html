@@ -1,0 +1,72 @@
+{% include 'head.html' %}
+<head>
+    <title>Work In Process</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/page-not-available-style.css')}}" />
+</head>
+
+<body>
+    <header>
+        <!-- Navigation Bar -->
+        {% include 'navbar.html' %}
+    </header>
+
+    <main>
+        <!-- <div style="width:100%;"><iframe src="https://giphy.com/embed/ocuQpTqeFlDOP4fFJI" frameBorder="0"></iframe></div> -->
+        <div class="text-center">
+            <h1>We are working on this!</h1>
+            <img src="{{url_for('static', filename='images/website-under-construction.gif')}}" alt="">
+        </div>
+
+        <div class="what-is-cagr">
+            
+                This is a prototype of the final product. Hence, a lot of features which will be provided in the future are disabled right now. 
+                <br>
+                <em><strong>Here are the tools you can use:</strong></em>
+                <ol>
+                    <li>Stocks -> Financials</li>
+                    <li>Stocks -> Stock Aggregated</li>
+                    <li>Stocks -> Fundamental Charts</li>
+                    <li>Mutual Fund -> MF Rolling Returns</li>
+                    <li>Calculator -> CAGR Calculator</li>
+                    <li>Calculator -> SIP Calculator</li>
+                    <li>Calculator -> Goal Based SIP Calculator</li>
+                </ol>
+                <em><strong>Three stocks are available for research currently:</strong></em>
+                <ol>
+                    <li>Pidilite Industries</li>
+                    <li>Page Industries</li>
+                    <li>Relaxo Footwear Ltd</li>
+                </ol>
+                <em><strong>The metrics available for equity analysis are:</strong></em>                
+                <ol>
+                    <li>Price Charts</li>
+                    <li>Market Cap</li>
+                    <li>ROE</li>
+                    <li>ROCE</li>
+                    <li>EPS</li>
+                    <li>P/E</li>
+                    <li>P/B</li>
+                    <li>Book Value</li>
+                    <li>Enterprise Value</li>
+                    <li>Dividend Yield</li>
+                    <li>Cash</li>
+                    <li>Debt</li>
+                    <li>Current Ratio</li>
+                    <li>Cash Flow per Share</li>
+                    <li>ROA</li>
+                    <li>EV/EBITDA</li>
+                    <li>Financial Statements</li>
+                </ol>
+                <em><strong>Mutual Fund Available for Rolling Return Analysis:</strong></em>
+                <ol>
+                    <li>Kotak Flexi Cap Fund</li>
+                </ol>
+                <strong>NEW FEATURES ARE BEING ADDED RAPIDLY, STAY TUNED!</strong>
+            
+        </div>
+
+    </main>
+
+{% include 'footer.html' %}
+</body>
+</html>

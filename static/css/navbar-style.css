@@ -1,0 +1,37 @@
+.navbar-custom {
+  font-family: "Montserrat", sans-serif;
+  background-color: hsl(233, 12%, 13%);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-custom .nav-link {
+  color: #dcdcdc;
+}
+
+.navbar-custom .nav-link:hover {
+  color: #fff;
+}
+
+.search-button {
+  background-color:#f35221;
+  border: transparent;
+}
+
+.search-button:hover {
+  background-color: transparent;
+  color: #f35221;
+}
+
+.div-q button {
+  margin: 70px 0 0;
+  background-color: #ffffff;
+  color: #f35221;
+  margin: 50px 0;
+  transition: ease-in-out 0.5s;
+}
+
+.div-q button:hover {
+  background-color: #f35221;
+  color: #ffffff;
+}

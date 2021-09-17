@@ -1,0 +1,47 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    color: var(--font-color);
+    background-image: url(../images/bg-tablet-pattern.svg),
+      url(../images/bg-tablet-pattern.svg);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right 61rem bottom -51rem, right -14rem top -22rem;
+  }
+  
+  /* Navigation Bar */
+  .top-navbar {
+    background-color: var(--dark-blue-main-bg);
+  }
+  
+  .navbar-custom {
+    background-color: hsl(233, 12%, 13%);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  
+  .navbar-custom .nav-link {
+    color: #dcdcdc;
+  }
+  
+  .navbar-custom .nav-link:hover {
+    color: #fff;
+  }
+  
+  .search-button {
+    background-color:#f35221;
+    border: transparent;
+  }
+  
+  .search-button:hover {
+    background-color: transparent;
+    color: #f35221;
+  }
+
+  main {
+    margin-top: 80px;
+    padding: 30px 60px;
+  }
+
+  main h4 {
+      font-weight: 600;
+  }
+  

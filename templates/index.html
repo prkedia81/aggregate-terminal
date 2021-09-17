@@ -1,0 +1,158 @@
+{% include 'head.html' %}
+
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Aggregate Terminal</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <!-- Navigation Bar -->
+        {% include 'navbar.html' %}
+
+        <div class="container-intro" style="margin-top: 5rem;">
+            <div class="intro-text">
+                <h1 class="intro-title">An Investment Analysis Terminal for You!</h1>
+                <p class="intro-para">
+                    Optimize your investment analysis with Aggregate Terminal.
+                    You do not need 100 tabs open anymore
+                </p>
+                <br>
+                <a href="{{ url_for('ticker') }}" class="test-button hover-btn" style="text-decoration:none;">Get Started</a>
+            </div>
+            <figure>
+                <img class="img-intro" src="{{url_for('static', filename='images/illustration-intro.svg')}}" alt="image">
+            </figure>
+        </div>
+    </header>
+
+    <section class="section-one">
+        <div class="div-one">
+            <h2 class="div-one__h2">What’s different about Aggregate Terminal?</h2>
+            <p class="div-one__para">
+                We provide all the data you need, at the click of button (and its affordable shhh...).
+                No more hunting for cheap accurate data now.
+            </p>
+        </div>
+        <div class="div-two">
+            <ol>
+                <li>
+                    Research and Visualise Equity data like never before. In this information age, reliable data is
+                    either scarce or very expensive. This tilts the playing field in favour of institutions and big
+                    players.
+                    NOT ANYMORE. With Aggregate Terminal, you will get reliable and accurate to level the trading.
+                </li>
+                <li>
+                    Customised Investment Analysis Dashboard. You do not need 100 tabs open to research a
+                    single stock or mutual fund when you can design your own investment analysis dashboard with things
+                    that matter to you.
+                </li>
+                <li>
+                    One stop solution for all investment vehicle analysis. Insurance, Mutual Funds, Equity, Bonds, you
+                    name it we have it.
+                </li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Features  -->
+    <div class="features">
+        <div class="header">
+            <h1>Reliable & Efficient </h1>
+            <h1>Personalised Investment Analysis Terminal</h1>
+            <!-- <p>Never lose out due to unreliable or unstructured data again. </p> -->
+        </div>
+
+        <div class="flex-container">
+            <div class="flex-item  flex-item-1">
+                <h2>API & Excel</h2>
+                <p>World's first API for the Indian Market. Over 7,400 companies are listed in the BSE and there isn't
+                    one API which covers the Indian Markets inside out. Well, now there is. Use our API and downloadable
+                    excel files for your own analysis and trading strategies.</p>
+            </div>
+
+            <div class="flex-wrapper">
+                <div class="flex-item flex-item-2">
+                    <h2>One-Stop Investment Portal</h2>
+                    <p>Looking for graphs of line items from financial statements? Want to see the bollinger bands for a
+                        stock? Need Rolling Returns data for your Mutual Fund Analysis? Aggregate Terminal is the answer
+                        to all these questions and much more!</p>
+                </div>
+
+                <div class="flex-item flex-item-3">
+                    <h2>Blog + Videos</h2>
+                    <p>Are you a novice who is lost in the ocean of noise that is the Stock Market? Aggregate Terminal to
+                        the rescue. We publish blogs and videos which is novice friendly and interesting for pros too.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex-item flex-item-4">
+                <h2>Financial Calculators</h2>
+                <p>Choose your calculator. Enter the required values. And Voila! You get your answer. Bye Bye tedious
+                    formulas.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!--TESTEMONIALS CARD-->
+    <section class="section__two">
+<!--        <h2 class="testem__h2">What they’ve said</h2>-->
+        <h2 class="testem__h2">Click on the button to read our blog!</h2>
+        <div class="veiw-box">
+
+<!--            <div id="testimonials">-->
+<!--                <div class="user space">-->
+<!--                    <img class="avatar" src="../static/images/avatar-anisha.png" alt="Anisha">-->
+<!--                    <h5>Anisha Li</h5>-->
+<!--                    <p class="card-text__one">-->
+<!--                        “Manage has supercharged our team’s workflow. The ability to maintain-->
+<!--                        visibility on larger milestones at all times keeps everyone motivated.”-->
+<!--                    </p>-->
+<!--                </div>-->
+<!--                <div class="user space">-->
+<!--                    <img class="avatar" src="../static/images/avatar-ali.png" alt="Ali">-->
+<!--                    <h5>Ali Bravo</h5>-->
+<!--                    <p class="card-text__two">-->
+<!--                        “We have been able to cancel so many other subscriptions since using-->
+<!--                        Manage. There is no more cross-channel confusion and everyone is much-->
+<!--                        more focused.”-->
+<!--                    </p>-->
+<!--                </div>-->
+
+<!--                <div class="user space">-->
+<!--                    <img class="avatar" src="../static/images/avatar-richard.png" alt="Richard">-->
+<!--                    <h5>Richard Watts</h5>-->
+<!--                    <p class="card-text__three">-->
+<!--                        “Manage allows us to provide structure and process. It keeps us organized-->
+<!--                        and focused. I can’t stop recommending them to everyone I talk to!”-->
+<!--                    </p>-->
+
+<!--                </div>-->
+
+
+<!--            </div>-->
+<!--            <div class="controls">-->
+<!--                <span id="control1"></span>-->
+<!--                <span id="control2" class="active"></span>-->
+<!--                <span id="control3"></span>-->
+<!--                <span id="control4"></span>-->
+<!--            </div>-->
+            <a href="{{ url_for('blog_home') }}" class="test-button hover-btn text-center" style="text-decoration:none">Blog</a>
+        </div>
+
+
+        <div class="div-q">
+            <p> Simplify your investment analysis today.</p>
+            <a href="{{ url_for('ticker') }}" class="test-button hover-btn text-center" style="text-decoration:none">Get Started</a>
+        </div>
+
+    </section>
+
+    <!--FOOTER-->
+{% include 'footer.html' %}
+</body>
+
+</html>

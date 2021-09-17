@@ -1,0 +1,79 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-image: url(../images/bg-tablet-pattern.svg),
+    url(../images/bg-tablet-pattern.svg);
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 61rem bottom -51rem, right -14rem top -22rem;
+}
+
+/* Main body */
+main {
+  margin-top: 80px;
+  padding: 30px 60px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-gap: 10px;    
+  align-items: center;
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  grid-gap: 20px;
+}
+
+.inputs label {
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.calculate-btn {
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 25px;
+  border: none;
+  /* width: 300px; */
+  background-color: #f35221;
+  color: #ffffff;
+  box-shadow: 0 10px 20px -5px #f35221;
+  transition: ease-in-out 0.5s;
+  margin: 25px auto;  
+}
+
+.calculate-btn:hover {    
+  background-color: #ffffff;
+  color: #f35221;
+}
+
+.cagr-pic {
+    width: 100%;
+}
+
+.answer {
+    background-color: rgba(255, 165, 138, 0.2);;
+    padding: 2rem;
+    border: 2px solid #f35221;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px -5px #f35221;    
+    font-size: 1.2rem;
+}
+
+.answer #returns {
+    font-weight: 600;
+}
+
+/* What is CAGR? */
+.what-is-cagr {
+    margin-top: 60px;
+}
+
+.what-is-cagr p {
+    margin: 50px auto;
+}
+
+.what-is-cagr h4 {
+    font-weight: 700;
+}
