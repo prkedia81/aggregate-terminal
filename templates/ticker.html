@@ -1,4 +1,5 @@
 {% include 'head.html' %}
+
 <head>
     <title>{{ info['symbol'] }}</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/ticker-style.css')}}" />
@@ -19,7 +20,8 @@
             <p class="comp-name">{{ info['name'] }}</p>
             <p class="ticker-data">
                 BSE: <strong><a class="stock-exchange">*****</a></strong> NSE:
-                <strong><a class="stock-exchange">{{ info['symbol'] }}</a></strong> Sector: <strong><a href="" class="sector">{{ info['industry'] }}</a></strong>
+                <strong><a class="stock-exchange">{{ info['symbol'] }}</a></strong> Sector: <strong><a href=""
+                        class="sector">{{ info['industry'] }}</a></strong>
             </p>
         </div>
 
@@ -68,71 +70,93 @@
                 <p class="section-heading">Company Essentials</p>
                 <div class="row">
                     <div class="col">
-                        <p class="unit-heading">Market Cap<a class="avatar" data-tooltip="Price of Share x No. of Shares Outstanding" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Market Cap<a class="avatar"
+                                data-tooltip="Price of Share x No. of Shares Outstanding"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ {{ info['market_cap'] }} Cr</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">Ent Value<a class="avatar" data-tooltip="Market Cap + Debt - Cash" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Ent Value<a class="avatar" data-tooltip="Market Cap + Debt - Cash"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ {{ info['enterprise_value'] }} Cr</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">No. of Shares<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">No. of Shares<a class="avatar" data-tooltip="Dummy Data"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['shares_outstanding']/10000000 }} Cr</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="unit-heading">P/E<a class="avatar" data-tooltip="Price of Share / EPS" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">P/E<a class="avatar" data-tooltip="Price of Share / EPS"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['price_to_earnings'] }}</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">P/B<a class="avatar" data-tooltip="Price of Share / Book Value" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">P/B<a class="avatar" data-tooltip="Price of Share / Book Value"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['price_to_book'] }}</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">EPS<a class="avatar" data-tooltip="Net Earnings / No. of Shares" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">EPS<a class="avatar" data-tooltip="Net Earnings / No. of Shares"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ {{ info['eps'] }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="unit-heading">Div Yield<a class="avatar" data-tooltip="Annual Dividend Per Share / Current Share Price" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Div Yield<a class="avatar"
+                                data-tooltip="Annual Dividend Per Share / Current Share Price"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['dividend_yield'] }}%</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">5 Yr CAGR<a class="avatar" data-tooltip="Return generated per year for 5 years" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">5 Yr CAGR<a class="avatar"
+                                data-tooltip="Return generated per year for 5 years"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['five_yr_avg_return'] }}%</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">Book Value<a class="avatar" data-tooltip="Stockholders' Equity / Shares Outstanding" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Book Value<a class="avatar"
+                                data-tooltip="Stockholders' Equity / Shares Outstanding"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ {{ info['book_value'] }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="unit-heading">Cash<a class="avatar" data-tooltip="Balance Sheet Line Item" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Cash<a class="avatar" data-tooltip="Balance Sheet Line Item"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ {{ info['cash'] }} Cr</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">Debt<a class="avatar" data-tooltip="Short Term + Long Term Debt" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Debt<a class="avatar" data-tooltip="Short Term + Long Term Debt"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ {{ info['debt'] }} Cr</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">Face Value<a class="avatar" data-tooltip="Nominal Value of stocks at the time of issuance" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Face Value<a class="avatar"
+                                data-tooltip="Nominal Value of stocks at the time of issuance"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">₹ 1</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="unit-heading">Prom. Holding<a class="avatar" data-tooltip="Percentage of shares held by the promoters" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Prom. Holding<a class="avatar"
+                                data-tooltip="Percentage of shares held by the promoters"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['insider_holding'] }}%</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">Debt to Equity<a class="avatar" data-tooltip="Total Liability / Shareholders' Equity" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">Debt to Equity<a class="avatar"
+                                data-tooltip="Total Liability / Shareholders' Equity"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['debt_to_equity'] }}%</p>
                     </div>
                     <div class="col">
-                        <p class="unit-heading">ROE<a class="avatar" data-tooltip="Net Income / Shareholders' Equity" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                        <p class="unit-heading">ROE<a class="avatar" data-tooltip="Net Income / Shareholders' Equity"
+                                style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                         <p class="value">{{ info['roe'] }}%</p>
                     </div>
                 </div>
@@ -171,60 +195,75 @@
             </div>
 
             <div>
-            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </symbol>
-              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
-              </symbol>
-              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-              </symbol>
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                        </path>
+                    </symbol>
+                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                        </path>
+                    </symbol>
+                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                        </path>
+                    </symbol>
+                </svg>
 
-            <div class="alert alert-danger d-flex align-items-center" role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
-              <div>
-                <span class="fw-bold">This is a representative of the real data. Do not use for analysis</span>
-              </div>
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                        <use xlink:href="#info-fill"></use>
+                    </svg>
+                    <div>
+                        <span class="fw-bold">This is a representative of the real data. Do not use for analysis</span>
+                    </div>
+                </div>
             </div>
-          </div>
 
             <!-- Metrics which are added -->
             <div class="metric-grid-container">
                 <div class="metric">
-                    <p class="unit-heading">GPM Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="unit-heading">GPM Y1<a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">25.81</p>
                 </div>
 
                 <div class="metric">
-                    <p class="unit-heading">DEBTORS TURNOVER Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="unit-heading">DEBTORS TURNOVER Y1<a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">6.89</p>
                 </div>
 
                 <div class=" metric">
-                    <p class="unit-heading">RECEIVABLE DAYS Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="unit-heading">RECEIVABLE DAYS Y1<a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">53.01</p>
                 </div>
 
                 <div class="col metric">
-                    <p class="unit-heading">ASSET TURNOVER Y1<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="unit-heading">ASSET TURNOVER Y1<a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">0.66</p>
                 </div>
 
                 <div class="col metric">
-                    <p class="unit-heading">PAYABLE TURNOVER <a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>                    
+                    <p class="unit-heading">PAYABLE TURNOVER <a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">7.12</p>
                 </div>
 
                 <div class="col metric">
-                    <p class="unit-heading">CASH AT START<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="unit-heading">CASH AT START<a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">564.17</p>
                 </div>
 
                 <div class="col metric">
-                    <p class="unit-heading">BORROWINGS<a class="avatar" data-tooltip="Dummy Data" style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
+                    <p class="unit-heading">BORROWINGS<a class="avatar" data-tooltip="Dummy Data"
+                            style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
                     <p class="value">0</p>
                 </div>
             </div>
@@ -238,39 +277,333 @@
                     <p class="section-heading">Price Chart</p>
 
                     <!-- Time Option -->
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">1d</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1w</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">3m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">6m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">3Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">5Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Max</a>
-                        </li>
-                    </ul>
+                    <!-- Time Option -->
+                    <nav>
+                        <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                            <button class="nav-link" id="nav-1d-tab" data-bs-toggle="tab" data-bs-target="#nav-1d"
+                                type="button" role="tab" aria-controls="nav-1d" aria-selected="true">1d</button>
+                            <button class="nav-link" id="nav-1w-tab" data-bs-toggle="tab" data-bs-target="#nav-1w"
+                                type="button" role="tab" aria-controls="nav-1w" aria-selected="true">1w</button>
+                            <button class="nav-link" id="nav-1m-tab" data-bs-toggle="tab" data-bs-target="#nav-1m"
+                                type="button" role="tab" aria-controls="nav-1m" aria-selected="true">1m</button>
+                            <button class="nav-link" id="nav-3m-tab" data-bs-toggle="tab" data-bs-target="#nav-3m"
+                                type="button" role="tab" aria-controls="nav-3m" aria-selected="true">3m</button>
+                            <button class="nav-link" id="nav-6m-tab" data-bs-toggle="tab" data-bs-target="#nav-6m"
+                                type="button" role="tab" aria-controls="nav-6m" aria-selected="false">6m</button>
+                            <button class="nav-link" id="nav-1yr-tab" data-bs-toggle="tab" data-bs-target="#nav-1yr"
+                                type="button" role="tab" aria-controls="nav-1yr" aria-selected="false">1Yr</button>
+                            <button class="nav-link active" id="nav-3yr-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-3yr" type="button" role="tab" aria-controls="nav-3yr"
+                                aria-selected="false">3Yr</button>
+                            <button class="nav-link" id="nav-5yr-tab" data-bs-toggle="tab" data-bs-target="#nav-5yr"
+                                type="button" role="tab" aria-controls="nav-5yr" aria-selected="false">5Yr</button>
+                            <button class="nav-link" id="nav-max-tab" data-bs-toggle="tab" data-bs-target="#nav-max"
+                                type="button" role="tab" aria-controls="nav-max" aria-selected="false">Max</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade" id="nav-1d" role="tabpanel" aria-labelledby="nav-1d-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
 
-                    <!-- Price Graph -->
-                    <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
-                        src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1w" role="tabpanel" aria-labelledby="nav-1w-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1m" role="tabpanel" aria-labelledby="nav-1m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-3m" role="tabpanel" aria-labelledby="nav-3m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-6m" role="tabpanel" aria-labelledby="nav-6m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1yr" role="tabpanel" aria-labelledby="nav-1yr-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="nav-3yr" role="tabpanel"
+                            aria-labelledby="nav-3yr-tab">
+                            <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                        </div>
+                        <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Volume Option & CAGR for given period -->
                     <div class="row graph-options">
@@ -291,39 +624,332 @@
                     </div>
 
                     <!-- Time Option -->
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">1d</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1w</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">3m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">6m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">3Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">5Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Max</a>
-                        </li>
-                    </ul>
+                    <nav>
+                        <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                            <button class="nav-link" id="nav-1d-tab" data-bs-toggle="tab" data-bs-target="#nav-1d"
+                                type="button" role="tab" aria-controls="nav-1d" aria-selected="true">1d</button>
+                            <button class="nav-link" id="nav-1w-tab" data-bs-toggle="tab" data-bs-target="#nav-1w"
+                                type="button" role="tab" aria-controls="nav-1w" aria-selected="true">1w</button>
+                            <button class="nav-link" id="nav-1m-tab" data-bs-toggle="tab" data-bs-target="#nav-1m"
+                                type="button" role="tab" aria-controls="nav-1m" aria-selected="true">1m</button>
+                            <button class="nav-link" id="nav-3m-tab" data-bs-toggle="tab" data-bs-target="#nav-3m"
+                                type="button" role="tab" aria-controls="nav-3m" aria-selected="true">3m</button>
+                            <button class="nav-link" id="nav-6m-tab" data-bs-toggle="tab" data-bs-target="#nav-6m"
+                                type="button" role="tab" aria-controls="nav-6m" aria-selected="false">6m</button>
+                            <button class="nav-link" id="nav-1yr-tab" data-bs-toggle="tab" data-bs-target="#nav-1yr"
+                                type="button" role="tab" aria-controls="nav-1yr" aria-selected="false">1Yr</button>
+                            <button class="nav-link active" id="nav-3yr-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-3yr" type="button" role="tab" aria-controls="nav-3yr"
+                                aria-selected="false">3Yr</button>
+                            <button class="nav-link" id="nav-5yr-tab" data-bs-toggle="tab" data-bs-target="#nav-5yr"
+                                type="button" role="tab" aria-controls="nav-5yr" aria-selected="false">5Yr</button>
+                            <button class="nav-link" id="nav-max-tab" data-bs-toggle="tab" data-bs-target="#nav-max"
+                                type="button" role="tab" aria-controls="nav-max" aria-selected="false">Max</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade" id="nav-1d" role="tabpanel" aria-labelledby="nav-1d-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
 
-                    <!-- PE Ratio Graph -->
-                    <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
-                        src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1w" role="tabpanel" aria-labelledby="nav-1w-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1m" role="tabpanel" aria-labelledby="nav-1m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-3m" role="tabpanel" aria-labelledby="nav-3m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-6m" role="tabpanel" aria-labelledby="nav-6m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1yr" role="tabpanel" aria-labelledby="nav-1yr-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="nav-3yr" role="tabpanel"
+                            aria-labelledby="nav-3yr-tab">
+                            <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                        </div>
+                        <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- EPS Option -->
                     <div class="eps graph-options">
@@ -396,28 +1022,215 @@
                 <!-- Graph for the metric which is chosen -->
                 <div class="col col-lg-9">
                     <!-- Time Option -->
-                    <ul class="nav nav-tabs justify-content-end">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">3m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">6m</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">1Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">3Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">5Yr</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="#">Max</a>
-                        </li>
-                    </ul>
-                    <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
-                        src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                    <nav>
+                        <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                            <button class="nav-link" id="nav-3m-tab" data-bs-toggle="tab" data-bs-target="#nav-3m"
+                                type="button" role="tab" aria-controls="nav-3m" aria-selected="true">3m</button>
+                            <button class="nav-link" id="nav-6m-tab" data-bs-toggle="tab" data-bs-target="#nav-6m"
+                                type="button" role="tab" aria-controls="nav-6m" aria-selected="false">6m</button>
+                            <button class="nav-link" id="nav-1yr-tab" data-bs-toggle="tab" data-bs-target="#nav-1yr"
+                                type="button" role="tab" aria-controls="nav-1yr" aria-selected="false">1Yr</button>
+                            <button class="nav-link active" id="nav-3yr-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-3yr" type="button" role="tab" aria-controls="nav-3yr"
+                                aria-selected="false">3Yr</button>
+                            <button class="nav-link" id="nav-5yr-tab" data-bs-toggle="tab" data-bs-target="#nav-5yr"
+                                type="button" role="tab" aria-controls="nav-5yr" aria-selected="false">5Yr</button>
+                            <button class="nav-link" id="nav-max-tab" data-bs-toggle="tab" data-bs-target="#nav-max"
+                                type="button" role="tab" aria-controls="nav-max" aria-selected="false">Max</button>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent">
+                        <div class="tab-pane fade" id="nav-3m" role="tabpanel" aria-labelledby="nav-3m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-6m" role="tabpanel" aria-labelledby="nav-6m-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-1yr" role="tabpanel" aria-labelledby="nav-1yr-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade show active" id="nav-3yr" role="tabpanel"
+                            aria-labelledby="nav-3yr-tab">
+                            <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                        </div>
+                        <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="nav-max" role="tabpanel" aria-labelledby="nav-max-tab">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                        </path>
+                                    </symbol>
+                                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                        </path>
+                                    </symbol>
+                                </svg>
+
+                                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                        aria-label="Info:">
+                                        <use xlink:href="#info-fill"></use>
+                                    </svg>
+                                    <div>
+                                        <span class="fw-bold">Not Available</span> <br>
+                                        This is a prototype. Hence, only <strong>3 Year</strong> time period data is
+                                        available right now.
+                                        <br>
+                                        More data will be added in future versions.
+                                        <br><br>
+                                        Cheers!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -564,39 +1377,37 @@
             <p class="section-heading">Corporate Action</p>
 
             <!-- Time Option -->
-            <ul class="nav nav-tabs justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">
+            <nav>
+                <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
+                  <button class="nav-link active" id="nav-dividend-tab" data-bs-toggle="tab" data-bs-target="#nav-dividend" type="button" role="tab" aria-controls="nav-dividend" aria-selected="true">
                         Dividend
                         <div class="avatar" data-tooltip="Dummy Data">
                             <i class="fas fa-info-circle"></i>
                         </div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Bonus
+                  </button>
+                  <button class="nav-link" id="nav-bonus-tab" data-bs-toggle="tab" data-bs-target="#nav-bonus" type="button" role="tab" aria-controls="nav-bonus" aria-selected="false">
+                    Bonus
                     <div class="avatar" data-tooltip="Dummy Data">
                         <i class="fas fa-info-circle"></i>
                     </div>
-                </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Rights
+                </button>
+                  <button class="nav-link" id="nav-right-tab" data-bs-toggle="tab" data-bs-target="#nav-right" type="button" role="tab" aria-controls="nav-right" aria-selected="false">
+                    Rights
                     <div class="avatar" data-tooltip="Dummy Data">
                         <i class="fas fa-info-circle"></i>
                     </div>
-                </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Split
-                    <div class="avatar" data-tooltip="Dummy Data">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
-                </a>
-                </li>
-            </ul>
-
-            <!-- Dividend Table -->
+                    </button>
+                    <button class="nav-link" id="nav-split-tab" data-bs-toggle="tab" data-bs-target="#nav-split" type="button" role="tab" aria-controls="nav-split" aria-selected="false">
+                        Split
+                        <div class="avatar" data-tooltip="Dummy Data">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        </button>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-dividend" role="tabpanel" aria-labelledby="nav-dividend-tab">
+                    <!-- Dividend Table -->
             <table class="table table-hover" id="dividend-table">
                 <thead class="table-primary">
                     <tr>
@@ -631,114 +1442,116 @@
                     </tr>
                 </tbody>
             </table>
+                </div>
+                <div class="tab-pane fade" id="nav-bonus" role="tabpanel" aria-labelledby="nav-bonus-tab">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                </path>
+                            </symbol>
+                            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                </path>
+                            </symbol>
+                            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                </path>
+                            </symbol>
+                        </svg>
 
-            <!-- Bonus Table -->
-            <!-- <table class="table table-hover" id="bonus-table">
-    <thead class="table-primary">
-      <tr>
-        <th scope="col">Ex Date</th>
-        <th scope="col">Record Date</th>
-        <th scope="col">Dividend %</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-    </tbody> -->
-            </table>
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Info:">
+                                <use xlink:href="#info-fill"></use>
+                            </svg>
+                            <div>
+                                <span class="fw-bold">Not Available</span> <br>
+                                This is data is not available yet.
+                                <br>
+                                More data will be added in future versions.
+                                <br><br>
+                                Cheers!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-right" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                </path>
+                            </symbol>
+                            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                </path>
+                            </symbol>
+                            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                </path>
+                            </symbol>
+                        </svg>
 
-            <!-- Rights Table -->
-            <!-- <table class="table table-hover" id="rights-table">
-    <thead class="table-primary">
-      <tr>
-        <th scope="col">Ex Date</th>
-        <th scope="col">Record Date</th>
-        <th scope="col">Dividend %</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-    </tbody>
-  </table> -->
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Info:">
+                                <use xlink:href="#info-fill"></use>
+                            </svg>
+                            <div>
+                                <span class="fw-bold">Not Available</span> <br>
+                                This is data is not available yet.
+                                <br>
+                                More data will be added in future versions.
+                                <br><br>
+                                Cheers!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="nav-split" role="tabpanel" aria-labelledby="nav-split-tab">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                </path>
+                            </symbol>
+                            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                </path>
+                            </symbol>
+                            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                </path>
+                            </symbol>
+                        </svg>
 
-            <!-- Splits Table -->
-            <!-- <table class="table table-hover" id="splits-table">
-    <thead class="table-primary">
-      <tr>
-        <th scope="col">Ex Date</th>
-        <th scope="col">Record Date</th>
-        <th scope="col">Dividend %</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Type</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-      <tr>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-        <td scope="col"><span class="placeholder col-12"></span></td>
-      </tr>
-    </tbody>
-  </table> -->
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Info:">
+                                <use xlink:href="#info-fill"></use>
+                            </svg>
+                            <div>
+                                <span class="fw-bold">Not Available</span> <br>
+                                This is data is not available yet.
+                                <br>
+                                More data will be added in future versions.
+                                <br><br>
+                                Cheers!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
         </div>
 
         <!-- 9. Company Filings -->
@@ -816,7 +1629,7 @@
         <div id="about-the-company" class="card-element">
             <p class="section-heading">Brief about {{ info['name'] }}</p>
             <p>
-               {{ info['about_business'] }}
+                {{ info['about_business'] }}
             </p>
         </div>
 
@@ -830,25 +1643,33 @@
             </div>
 
             <div>
-            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </symbol>
-              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
-              </symbol>
-              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-              </symbol>
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                        </path>
+                    </symbol>
+                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                        </path>
+                    </symbol>
+                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                        </path>
+                    </symbol>
+                </svg>
 
-            <div class="alert alert-danger d-flex align-items-center" role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
-              <div>
-                <span class="fw-bold">This is a representative of the real data. Do not use for analysis</span>
-              </div>
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                        <use xlink:href="#info-fill"></use>
+                    </svg>
+                    <div>
+                        <span class="fw-bold">This is a representative of the real data. Do not use for analysis</span>
+                    </div>
+                </div>
             </div>
-          </div>
 
             <div class="row">
                 <div class="col col-lg-8">
@@ -918,25 +1739,33 @@
             </div>
 
             <div>
-            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-              <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </symbol>
-              <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"></path>
-              </symbol>
-              <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-              </symbol>
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                        </path>
+                    </symbol>
+                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                        </path>
+                    </symbol>
+                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path
+                            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                        </path>
+                    </symbol>
+                </svg>
 
-            <div class="alert alert-danger d-flex align-items-center" role="alert">
-              <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"></use></svg>
-              <div>
-                <span class="fw-bold">Not available in the prototype!</span>
-              </div>
+                <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                        <use xlink:href="#info-fill"></use>
+                    </svg>
+                    <div>
+                        <span class="fw-bold">Not available in the prototype!</span>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
     </main>
 
