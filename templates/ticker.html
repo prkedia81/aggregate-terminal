@@ -83,7 +83,7 @@
                     <div class="col">
                         <p class="unit-heading">No. of Shares<a class="avatar" data-tooltip="Dummy Data"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['shares_outstanding']/10000000 }} Cr</p>
+                        <p class="value">{{ info['shares_outstanding'] }} Cr</p>
                     </div>
                 </div>
                 <div class="row">
@@ -276,7 +276,6 @@
                 <div class="col col-lg-6 price-vol">
                     <p class="section-heading">Price Chart</p>
 
-                    <!-- Time Option -->
                     <!-- Time Option -->
                     <nav>
                         <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
@@ -609,10 +608,10 @@
                     <div class="row graph-options">
                         <div class="col cagr">CAGR: 26.60%</div>
 
-                        <div class="col vol">
-                            <input type="checkbox" name="Volume" id="volume" />
+                        <form class="col vol">
+                            <input type="checkbox" name="Volume" id="volume" disabled/>
                             <label for="Volume">Volume</label>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -952,10 +951,10 @@
                     </div>
 
                     <!-- EPS Option -->
-                    <div class="eps graph-options">
-                        <input type="checkbox" name="Volume" id="volume" />
+                    <form class="eps graph-options">
+                        <input type="checkbox" name="Volume" id="volume" disabled/>
                         <label for="Volume">EPS</label>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -1358,18 +1357,560 @@
             <p class="section-heading">Financials</p>
 
             <!-- Financial Statement -->
-            <!-- Time Option -->
-            <ul class="nav nav-tabs nav-fill">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Balance Sheet</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Income Statement</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#">Cash Flow Statement</a>
-                </li>
-            </ul>
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-bs-tab" data-bs-toggle="tab" data-bs-target="#nav-bs"
+                        type="button" role="tab" aria-controls="nav-bs" aria-selected="true">Balance Sheet</button>
+                    <button class="nav-link" id="nav-is-tab" data-bs-toggle="tab" data-bs-target="#nav-is" type="button"
+                        role="tab" aria-controls="nav-is" aria-selected="false">Income Statement</button>
+                    <button class="nav-link" id="nav-scf-tab" data-bs-toggle="tab" data-bs-target="#nav-scf"
+                        type="button" role="tab" aria-controls="nav-scf" aria-selected="false">Cash Flow
+                        Statement</button>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-bs" role="tabpanel" aria-labelledby="nav-bs-tab">
+                    <br>
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Balance Sheet</th>
+                                <th scope="col">31/03/2018</th>
+                                <th scope="col">31/03/2019</th>
+                                <th scope="col">31/03/2020</th>
+                                <th scope="col">31/03/2021</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Assets -->
+                            <tr>
+                                <td>Cash And Cash Equivalents</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Cash"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Short Term Investments</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Short Term Investments"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Net Receivables</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Net Receivables"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Inventory</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Inventory"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Other Current Assets</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Other Current Assets"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Total Current Assets</th>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(bs_df["Total Current Assets"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Property, Plant & Equipment</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Property Plant Equipment"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Long Term Investments</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Long Term Investments"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% if error_check("Good Will", bs_df) == True: %}
+                                <tr>                                
+                                    <td>Goodwill</td>
+                                    {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                    <td>{{ round_f(bs_df["Good Will"][i], 2, 100000) }}</td>
+                                    {% endfor %}                                
+                                </tr>
+                            {% endif %}
+                            <tr>
+                                <td>Other Intangible Assets</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Intangible Assets"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Other Assets</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ bs_df["Other Assets"][i] }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr class="bold line-above">
+                                <th>Total Assets</th>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(bs_df["Total Assets"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <!-- Liabilities -->
+                            <tr>
+                                <td>Accounts Payable</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Accounts Payable"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Short Term Debt</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Short Long Term Debt"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Other Current Liabilities</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Other Current Liab"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Total Current Liability</th>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(bs_df["Total Current Liabilities"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Long Term Debt</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Long Term Debt"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% if error_check("Deferred Long Term Asset Charges", bs_df) == True: %}
+                            <tr>
+                                <td>Deferred Long Term Asset Charges</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Deferred Long Term Asset Charges"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <td>Other Liabilities</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Other Liab"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Total Liability</th>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(bs_df["Total Liab"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <!-- S/H Equity -->
+                            <tr>
+                                <td>Common Stock</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Common Stock"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Treasury Stock</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Treasury Stock"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Retained Earnings</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Retained Earnings"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Other Stockholder Equity</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Other Stockholder Equity"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% if error_check("Minority Interest", bs_df) == True: %}
+                            <tr>
+                                <td>Minority Interest</td>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(bs_df["Minority Interest"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th>Total Stockholder Equity</th>
+                                {% for i in range(bs_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(bs_df["Total Stockholder Equity"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="nav-is" role="tabpanel" aria-labelledby="nav-is-tab">
+                    <br>
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Income Statement</th>
+                                <th scope="col">31/03/2018</th>
+                                <th scope="col">31/03/2019</th>
+                                <th scope="col">31/03/2020</th>
+                                <th scope="col">31/03/2021</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Revenues</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Total Revenue"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Cost of Goods Sold</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Cost Of Revenue"][i], 2, 100000) }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Gross Profit</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(is_df["Gross Profit"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Selling, General and Admin Expenses</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Selling General Administrative"][i], 2, 100000)
+                                    }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Research & Development</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Research Development"][i], 2, 100000) }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Total Operating Expenses</th>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th style="color:red">({{ round_f(is_df["Total Operating Expenses"][i], 2, 100000) }})
+                                </th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Operating Income</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Operating Income"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>EBIT</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Ebit"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Interest Expense</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Interest Expense"][i], 2, 100000) }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Non Recurring Expenses</td>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Non Recurring"][i], 2, 100000) }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Other Unusual Items</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th style="color:red">({{ round_f(is_df["Extraordinary Items"][i], 2, 100000) }})</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>EBT</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Income Before Tax"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Income Tax Expense</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Income Tax Expense"][i], 2, 100000) }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Net Income From Continuing Operations</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Net Income From Continuing Ops"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Earnings from Discontinued Operations</td>
+                                <!-- Red in brackets Use if or Else -->
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(is_df["Discontinued Operations"][i], 2, 100000) == "": %}
+                                <th></th>
+                                {% elif is_df["Discontinued Operations"][i] < 0:%} <th style="color:red">({{
+                                    round_f(is_df["Discontinued Operations"][i], 2, 100000) }})</th>
+                                    {% else: %}
+                                    <th>{{ round_f(is_df["Discontinued Operations"][i], 2, 100000) }}</th>
+                                    {% endif %}
+                                    {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Minority Interest</td>
+                                <!-- Red in brackets -->
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <td style="color:red">({{ round_f(is_df["Minority Interest"][i], 2, 100000) }})</td>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Net Income</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Net Income"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Net Income to Common Shares</th>
+                                {% for i in range(is_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(is_df["Net Income From Continuing Ops"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="nav-scf" role="tabpanel" aria-labelledby="nav-scf-tab">
+                    <br>
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Cash Flow Statement</th>
+                                <th scope="col">31/03/2018</th>
+                                <th scope="col">31/03/2019</th>
+                                <th scope="col">31/03/2020</th>
+                                <th scope="col">31/03/2021</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Net Income</th>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                <th>{{ round_f(scf_df["Net Income"][i], 2, 100000) }}</th>
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Depreciation & Amortization</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                <td>{{ round_f(scf_df["Depreciation"][i], 2, 100000) }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% if error_check("Change To Account Receivables", scf_df) == True: %}
+                            <tr>
+                                <td>Change in Accounts Receivable</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Change To Account Receivables"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Change To Account Receivables"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Change To Account Receivables"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Change To Account Receivables"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                            {% if error_check("Change To Inventory", scf_df) == True: %}
+                            <tr>
+                                <td>Change in Inventory</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Change To Inventory"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Change To Inventory"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Change To Inventory"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Change To Inventory"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                            {% if error_check("Change To Liabilities", scf_df) == True: %}
+                            <tr>
+                                <td>Change in Liabilities</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Change To Liabilities"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Change To Liabilities"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Change To Liabilities"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Change To Liabilities"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                            <!-- {% if error_check("Change In Cash", scf_df) == True: %} -->
+                            <tr>
+                                <td>Change in Cash</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Change In Cash"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Change In Cash"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Change In Cash"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Change In Cash"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <!-- {% endif %} -->
+                            <tr>
+                                <th>Cash From Operating Activities</th>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Total Cash From Operating Activities"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Total Cash From Operating Activities"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Total Cash From Operating Activities"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <th>{{ round_f(scf_df["Total Cash From Operating Activities"][i], 2, 100000) }}</th>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Capital Expenditure</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Capital Expenditures"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Capital Expenditures"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Capital Expenditures"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Capital Expenditures"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Investments in Marketable & Equity Securities</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Investments"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Investments"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Investments"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Investments"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Other Investing Activities</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Other Cashflows From Investing Activities"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Cash From Investing Activities</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Total Cashflows From Investing Activities"][i] < 0:%}
+                                <th style="color:red">({{ round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 100000) }})</th>
+                                {% else: %}
+                                <th>{{ round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 100000) }}</th>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Net Change in Borrowings</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Net Borrowings"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Net Borrowings"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Net Borrowings"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Net Borrowings"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <td>Net Dividends Paid</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Dividends Paid"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Dividends Paid"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Dividends Paid"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Dividends Paid"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}                                	
+                            </tr>
+                            <tr>
+                                <td>Other Financing Activities</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Other Cashflows From Financing Activities"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            <tr>
+                                <th>Cash From Financing Activities</th>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Total Cash From Financing Activities"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Total Cash From Financing Activities"][i] < 0:%}
+                                <th style="color:red">({{ round_f(scf_df["Total Cash From Financing Activities"][i], 2, 100000) }})</th>
+                                {% else: %}
+                                <th>{{ round_f(scf_df["Total Cash From Financing Activities"][i], 2, 100000) }}</th>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% if error_check("Effect Of Exchange Rate", scf_df) == True: %}
+                            <tr>
+                                <td>Foreign Exchange Rate Adjustments</td>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Effect Of Exchange Rate"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Effect Of Exchange Rate"][i] < 0:%}
+                                <td style="color:red">({{ round_f(scf_df["Effect Of Exchange Rate"][i], 2, 100000) }})</td>
+                                {% else: %}
+                                <td>{{ round_f(scf_df["Effect Of Exchange Rate"][i], 2, 100000) }}</td>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                            {% endif %}
+                            <tr>
+                                <th>Net Change in Cash</th>
+                                {% for i in range(scf_df.shape[0]-1, -1, -1): %}
+                                {% if round_f(scf_df["Change In Cash"][i], 2, 100000) == "": %}
+                                <td></td>
+                                {% elif scf_df["Change In Cash"][i] < 0:%}
+                                <th style="color:red">({{ round_f(scf_df["Change In Cash"][i], 2, 100000) }})</th>
+                                {% else: %}
+                                <th>{{ round_f(scf_df["Change In Cash"][i], 2, 100000) }}</th>
+                                {% endif %}
+                                {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- 8. Corporate Actions -->
@@ -1379,69 +1920,75 @@
             <!-- Time Option -->
             <nav>
                 <div class="nav nav-tabs justify-content-end" id="nav-tab" role="tablist">
-                  <button class="nav-link active" id="nav-dividend-tab" data-bs-toggle="tab" data-bs-target="#nav-dividend" type="button" role="tab" aria-controls="nav-dividend" aria-selected="true">
+                    <button class="nav-link active" id="nav-dividend-tab" data-bs-toggle="tab"
+                        data-bs-target="#nav-dividend" type="button" role="tab" aria-controls="nav-dividend"
+                        aria-selected="true">
                         Dividend
                         <div class="avatar" data-tooltip="Dummy Data">
                             <i class="fas fa-info-circle"></i>
                         </div>
-                  </button>
-                  <button class="nav-link" id="nav-bonus-tab" data-bs-toggle="tab" data-bs-target="#nav-bonus" type="button" role="tab" aria-controls="nav-bonus" aria-selected="false">
-                    Bonus
-                    <div class="avatar" data-tooltip="Dummy Data">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
-                </button>
-                  <button class="nav-link" id="nav-right-tab" data-bs-toggle="tab" data-bs-target="#nav-right" type="button" role="tab" aria-controls="nav-right" aria-selected="false">
-                    Rights
-                    <div class="avatar" data-tooltip="Dummy Data">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
                     </button>
-                    <button class="nav-link" id="nav-split-tab" data-bs-toggle="tab" data-bs-target="#nav-split" type="button" role="tab" aria-controls="nav-split" aria-selected="false">
+                    <button class="nav-link" id="nav-bonus-tab" data-bs-toggle="tab" data-bs-target="#nav-bonus"
+                        type="button" role="tab" aria-controls="nav-bonus" aria-selected="false">
+                        Bonus
+                        <div class="avatar" data-tooltip="Dummy Data">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </button>
+                    <button class="nav-link" id="nav-right-tab" data-bs-toggle="tab" data-bs-target="#nav-right"
+                        type="button" role="tab" aria-controls="nav-right" aria-selected="false">
+                        Rights
+                        <div class="avatar" data-tooltip="Dummy Data">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </button>
+                    <button class="nav-link" id="nav-split-tab" data-bs-toggle="tab" data-bs-target="#nav-split"
+                        type="button" role="tab" aria-controls="nav-split" aria-selected="false">
                         Split
                         <div class="avatar" data-tooltip="Dummy Data">
                             <i class="fas fa-info-circle"></i>
                         </div>
-                        </button>
+                    </button>
                 </div>
-              </nav>
-              <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-dividend" role="tabpanel" aria-labelledby="nav-dividend-tab">
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-dividend" role="tabpanel"
+                    aria-labelledby="nav-dividend-tab">
                     <!-- Dividend Table -->
-            <table class="table table-hover" id="dividend-table">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col">Ex Date</th>
-                        <th scope="col">Record Date</th>
-                        <th scope="col">Dividend %</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Type</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                    </tr>
-                    <tr>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                    </tr>
-                    <tr>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                        <td scope="col"><span class="placeholder col-12"></span></td>
-                    </tr>
-                </tbody>
-            </table>
+                    <table class="table table-hover" id="dividend-table">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col">Ex Date</th>
+                                <th scope="col">Record Date</th>
+                                <th scope="col">Dividend %</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                            </tr>
+                            <tr>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                            </tr>
+                            <tr>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                                <td scope="col"><span class="placeholder col-12"></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="tab-pane fade" id="nav-bonus" role="tabpanel" aria-labelledby="nav-bonus-tab">
                     <div>
@@ -1464,8 +2011,7 @@
                         </svg>
 
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-                                aria-label="Info:">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                                 <use xlink:href="#info-fill"></use>
                             </svg>
                             <div>
@@ -1500,8 +2046,7 @@
                         </svg>
 
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-                                aria-label="Info:">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                                 <use xlink:href="#info-fill"></use>
                             </svg>
                             <div>
@@ -1536,8 +2081,7 @@
                         </svg>
 
                         <div class="alert alert-danger d-flex align-items-center" role="alert">
-                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
-                                aria-label="Info:">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
                                 <use xlink:href="#info-fill"></use>
                             </svg>
                             <div>
@@ -1551,7 +2095,7 @@
                         </div>
                     </div>
                 </div>
-              </div>
+            </div>
         </div>
 
         <!-- 9. Company Filings -->

@@ -1,5 +1,6 @@
 import yfinance as yf
 import pandas as pd
+from matplotlib.figure import Figure
 
 
 class StockAggregatedFundamentals:
@@ -36,3 +37,12 @@ class StockAggregatedFundamentals:
 
         }
         return info
+
+    def balance_sheet(self):
+        return self.stock_yf_ticker.balance_sheet.T
+
+    def income_statement(self):
+        return self.stock_yf_ticker.financials.T
+
+    def cash_flow(self):
+        return self.stock_yf_ticker.cashflow.T
