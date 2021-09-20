@@ -61,8 +61,17 @@ def stock_aggregated(company_ticker):
     bs_df = stock.balance_sheet()
     is_df = stock.income_statement()
     scf_df = stock.cash_flow()
+    img_src = ""
+    if company_ticker == "PIDILITIND.NS":
+        img_src = "static/images/Ticker-Page/Pidilite-DCF.png"
+    elif company_ticker == "PAGEIND.NS":
+        img_src = "static/images/Ticker-Page/Page-DCF.png"
+    elif company_ticker == "RELAXO.NS":
+        img_src = "/static/images/Ticker-Page/Relaxo-DCF.png"
+    else:
+        img_src = ""
     return render_template('ticker.html', info=info, bs_df=bs_df, is_df=is_df, scf_df=scf_df, round_f=rounding_check,
-                           error_check=error_check)
+                           error_check=error_check, img_src=img_src)
 
 
 @app.route('/stocks/fundamental-charts')

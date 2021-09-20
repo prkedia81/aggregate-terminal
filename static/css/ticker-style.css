@@ -241,68 +241,6 @@ main {
   color: #000;
 }
 
-/* Footer section */
-footer {
-  background-color: var(--dark-blue-main-bg);
-  padding: 40px;
-  padding-top: 150px;
-  color: #fff;
-}
-
-.footer-content {
-  display: grid;
-  /* grid-template-rows: 1fr; */
-  grid-template-columns: 1% 55% auto auto auto;
-  grid-template-areas: "location lorem contact links-1 links-2";
-  /* justify-content: ce; */
-  /* text-align: justify; */
-  grid-gap: 2%;
-}
-
-.location {
-  grid: location;
-}
-
-.contact {
-  grid: contact;
-}
-
-.links-1 {
-  grid: links-1;
-}
-
-.links-2 {
-  grid: links-2;
-}
-
-.lorem {
-  grid: lorem;
-  width: 50%;
-}
-
-.footer-content p {
-  margin: 0;
-  padding: 0;
-}
-
-.contact image {
-  float: left;
-}
-
-.contact p {
-  display: inline-block;
-  padding-left: 5px;
-  /* padding-bottom: 10px; */
-}
-
-.links-1 a,
-.links-2 a {
-  display: block;
-  padding-bottom: 5px;
-  color: hsl(0, 0%, 100%);
-  text-decoration: none;
-}
-
 /* Tooltip Section */
 .fa-info-circle {
   color: #333;
