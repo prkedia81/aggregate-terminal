@@ -36,22 +36,13 @@ def error_check(df, column_name):
         return False
 
 
-# @app.route('/plot.png')
-# def plot_png():
-#     stock =
-#     fig = create_figure()
-#     output = io.BytesIO()
-#     FigureCanvas(fig).print_png(output)
-#     return Response(output.getvalue(), mimetype='image/png')
-#
-#
-# def create_figure():
-#     fig = Figure()
-#     axis = fig.add_subplot(1, 1, 1)
-#     xs = range(100)
-#     ys = [random.randint(1, 50) for x in xs]
-#     axis.plot(xs, ys)
-#     return fig
+@app.route('/<plot_heading>/<company_ticker>/plot.png')
+def plot_png(company_ticker, plot_heading):
+    stock = StockAggregatedFundamentals(company_ticker=company_ticker)
+    fig = stock.create_figure(plot_heading)
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
 
 
 @app.route('/stocks/ticker/<company_ticker>')
@@ -61,17 +52,17 @@ def stock_aggregated(company_ticker):
     bs_df = stock.balance_sheet()
     is_df = stock.income_statement()
     scf_df = stock.cash_flow()
-    img_src = ""
+    cagr = stock.cagr()
     if company_ticker == "PIDILITIND.NS":
-        img_src = "static/images/Ticker-Page/Pidilite-DCF.png"
+        img_src = "/static/images/Ticker-Page/Pidilite-DCF.png"
     elif company_ticker == "PAGEIND.NS":
-        img_src = "static/images/Ticker-Page/Page-DCF.png"
+        img_src = "/static/images/Ticker-Page/Page-DCF.png"
     elif company_ticker == "RELAXO.NS":
         img_src = "/static/images/Ticker-Page/Relaxo-DCF.png"
     else:
         img_src = ""
     return render_template('ticker.html', info=info, bs_df=bs_df, is_df=is_df, scf_df=scf_df, round_f=rounding_check,
-                           error_check=error_check, img_src=img_src)
+                           error_check=error_check, img_src=img_src, cagr=cagr)
 
 
 @app.route('/stocks/fundamental-charts')

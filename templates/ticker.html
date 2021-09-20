@@ -525,8 +525,9 @@
                         </div>
                         <div class="tab-pane fade show active" id="nav-3yr" role="tabpanel"
                             aria-labelledby="nav-3yr-tab">
-                            <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
-                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                            <!-- <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
+                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe> -->
+                            <img src="{{ url_for('plot_png', company_ticker=info['symbol'], plot_heading='price') }}" style="width:100%">
                         </div>
                         <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab">
                             <div>
@@ -606,7 +607,13 @@
 
                     <!-- Volume Option & CAGR for given period -->
                     <div class="row graph-options">
-                        <div class="col cagr">CAGR: 26.60%</div>
+                        <div class="col cagr">CAGR: 
+                            {% if cagr > 0: %}
+                            <p style="display:inline-block; color:rgb(4, 187, 4); font-weight:700">{{cagr}}%</p>
+                            {% else: %}
+                            <p style="display:inline-block; color:red; font-weight:700">{{cagr}}%</p>
+                            {% endif %}
+                        </div>
 
                         <form class="col vol">
                             <input type="checkbox" name="Volume" id="volume" disabled/>
@@ -871,8 +878,7 @@
                         </div>
                         <div class="tab-pane fade show active" id="nav-3yr" role="tabpanel"
                             aria-labelledby="nav-3yr-tab">
-                            <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
-                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                            <img src="{{ url_for('plot_png', company_ticker=info['symbol'], plot_heading='pe') }}" style="width:100%">
                         </div>
                         <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab">
                             <div>
@@ -1016,6 +1022,39 @@
                     <br />
                     <input type="radio" name="plot-type" id="plot-type" />
                     <label for="plot-type">Absolute Change</label>
+                    <br><br>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z">
+                                </path>
+                            </symbol>
+                            <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z">
+                                </path>
+                            </symbol>
+                            <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+                                </path>
+                            </symbol>
+                        </svg>
+
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img"
+                                aria-label="Info:">
+                                <use xlink:href="#info-fill"></use>
+                            </svg>
+                            <div>
+                                <span class="fw-bold">Not Available</span> <br>
+                                Placeholder Graph has been inserted
+                                <br>
+                                More data will be added in future versions.
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Graph for the metric which is chosen -->
@@ -1152,8 +1191,7 @@
                         </div>
                         <div class="tab-pane fade show active" id="nav-3yr" role="tabpanel"
                             aria-labelledby="nav-3yr-tab">
-                            <iframe id="igraph" scrolling="no" style="border: none" seamless="seamless"
-                                src="https://plotly.com/~chris/1638.embed" height="525" width="100%"></iframe>
+                            <img src="{{ url_for('plot_png', company_ticker=info['symbol'], plot_heading='pe') }}" style="width:100%">
                         </div>
                         <div class="tab-pane fade" id="nav-5yr" role="tabpanel" aria-labelledby="nav-5yr-tab">
                             <div>
@@ -1386,63 +1424,63 @@
                             <tr>
                                 <td>Cash And Cash Equivalents</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Cash"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Cash"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Short Term Investments</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Short Term Investments"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Short Term Investments"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Net Receivables</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Net Receivables"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Net Receivables"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Inventory</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Inventory"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Inventory"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Other Current Assets</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Other Current Assets"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Other Current Assets"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Total Current Assets</th>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(bs_df["Total Current Assets"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(bs_df["Total Current Assets"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Property, Plant & Equipment</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Property Plant Equipment"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Property Plant Equipment"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Long Term Investments</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Long Term Investments"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Long Term Investments"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             {% if error_check("Good Will", bs_df) == True: %}
                                 <tr>                                
                                     <td>Goodwill</td>
                                     {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                    <td>{{ round_f(bs_df["Good Will"][i], 2, 100000) }}</td>
+                                    <td>{{ round_f(bs_df["Good Will"][i], 2, 10000000) }}</td>
                                     {% endfor %}                                
                                 </tr>
                             {% endif %}
                             <tr>
                                 <td>Other Intangible Assets</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Intangible Assets"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Intangible Assets"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
@@ -1454,97 +1492,97 @@
                             <tr class="bold line-above">
                                 <th>Total Assets</th>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(bs_df["Total Assets"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(bs_df["Total Assets"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <!-- Liabilities -->
                             <tr>
                                 <td>Accounts Payable</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Accounts Payable"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Accounts Payable"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Short Term Debt</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Short Long Term Debt"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Short Long Term Debt"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Other Current Liabilities</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Other Current Liab"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Other Current Liab"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Total Current Liability</th>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(bs_df["Total Current Liabilities"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(bs_df["Total Current Liabilities"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Long Term Debt</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Long Term Debt"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Long Term Debt"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             {% if error_check("Deferred Long Term Asset Charges", bs_df) == True: %}
                             <tr>
                                 <td>Deferred Long Term Asset Charges</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Deferred Long Term Asset Charges"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Deferred Long Term Asset Charges"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             {% endif %}
                             <tr>
                                 <td>Other Liabilities</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Other Liab"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Other Liab"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Total Liability</th>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(bs_df["Total Liab"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(bs_df["Total Liab"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <!-- S/H Equity -->
                             <tr>
                                 <td>Common Stock</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Common Stock"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Common Stock"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Treasury Stock</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Treasury Stock"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Treasury Stock"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Retained Earnings</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Retained Earnings"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Retained Earnings"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Other Stockholder Equity</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Other Stockholder Equity"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Other Stockholder Equity"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             {% if error_check("Minority Interest", bs_df) == True: %}
                             <tr>
                                 <td>Minority Interest</td>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(bs_df["Minority Interest"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(bs_df["Minority Interest"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             {% endif %}
                             <tr>
                                 <th>Total Stockholder Equity</th>
                                 {% for i in range(bs_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(bs_df["Total Stockholder Equity"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(bs_df["Total Stockholder Equity"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                         </tbody>
@@ -1566,27 +1604,27 @@
                             <tr>
                                 <th>Revenues</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Total Revenue"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Total Revenue"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Cost of Goods Sold</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Cost Of Revenue"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(is_df["Cost Of Revenue"][i], 2, 10000000) }})</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Gross Profit</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(is_df["Gross Profit"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(is_df["Gross Profit"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Selling, General and Admin Expenses</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Selling General Administrative"][i], 2, 100000)
+                                <td style="color:red">({{ round_f(is_df["Selling General Administrative"][i], 2, 10000000)
                                     }})</td>
                                 {% endfor %}
                             </tr>
@@ -1594,66 +1632,66 @@
                                 <td>Research & Development</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Research Development"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(is_df["Research Development"][i], 2, 10000000) }})</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Total Operating Expenses</th>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th style="color:red">({{ round_f(is_df["Total Operating Expenses"][i], 2, 100000) }})
+                                <th style="color:red">({{ round_f(is_df["Total Operating Expenses"][i], 2, 10000000) }})
                                 </th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Operating Income</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Operating Income"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Operating Income"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>EBIT</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Ebit"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Ebit"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Interest Expense</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Interest Expense"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(is_df["Interest Expense"][i], 2, 10000000) }})</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Non Recurring Expenses</td>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Non Recurring"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(is_df["Non Recurring"][i], 2, 10000000) }})</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Other Unusual Items</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th style="color:red">({{ round_f(is_df["Extraordinary Items"][i], 2, 100000) }})</th>
+                                <th style="color:red">({{ round_f(is_df["Extraordinary Items"][i], 2, 10000000) }})</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>EBT</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Income Before Tax"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Income Before Tax"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Income Tax Expense</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Income Tax Expense"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(is_df["Income Tax Expense"][i], 2, 10000000) }})</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Net Income From Continuing Operations</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Net Income From Continuing Ops"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Net Income From Continuing Ops"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
@@ -1661,12 +1699,12 @@
                                 <!-- Red in brackets Use if or Else -->
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(is_df["Discontinued Operations"][i], 2, 100000) == "": %}
+                                {% if round_f(is_df["Discontinued Operations"][i], 2, 10000000) == "": %}
                                 <th></th>
                                 {% elif is_df["Discontinued Operations"][i] < 0:%} <th style="color:red">({{
-                                    round_f(is_df["Discontinued Operations"][i], 2, 100000) }})</th>
+                                    round_f(is_df["Discontinued Operations"][i], 2, 10000000) }})</th>
                                     {% else: %}
-                                    <th>{{ round_f(is_df["Discontinued Operations"][i], 2, 100000) }}</th>
+                                    <th>{{ round_f(is_df["Discontinued Operations"][i], 2, 10000000) }}</th>
                                     {% endif %}
                                     {% endfor %}
                             </tr>
@@ -1674,19 +1712,19 @@
                                 <td>Minority Interest</td>
                                 <!-- Red in brackets -->
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <td style="color:red">({{ round_f(is_df["Minority Interest"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(is_df["Minority Interest"][i], 2, 10000000) }})</td>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Net Income</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Net Income"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Net Income"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Net Income to Common Shares</th>
                                 {% for i in range(is_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(is_df["Net Income From Continuing Ops"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(is_df["Net Income From Continuing Ops"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                         </tbody>
@@ -1708,25 +1746,25 @@
                             <tr>
                                 <th>Net Income</th>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                <th>{{ round_f(scf_df["Net Income"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(scf_df["Net Income"][i], 2, 10000000) }}</th>
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Depreciation & Amortization</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                <td>{{ round_f(scf_df["Depreciation"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Depreciation"][i], 2, 10000000) }}</td>
                                 {% endfor %}
                             </tr>
                             {% if error_check("Change To Account Receivables", scf_df) == True: %}
                             <tr>
                                 <td>Change in Accounts Receivable</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Change To Account Receivables"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Change To Account Receivables"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Change To Account Receivables"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Change To Account Receivables"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Change To Account Receivables"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Change To Account Receivables"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Change To Account Receivables"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
@@ -1735,12 +1773,12 @@
                             <tr>
                                 <td>Change in Inventory</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Change To Inventory"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Change To Inventory"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Change To Inventory"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Change To Inventory"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Change To Inventory"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Change To Inventory"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Change To Inventory"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
@@ -1749,12 +1787,12 @@
                             <tr>
                                 <td>Change in Liabilities</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Change To Liabilities"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Change To Liabilities"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Change To Liabilities"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Change To Liabilities"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Change To Liabilities"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Change To Liabilities"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Change To Liabilities"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
@@ -1763,12 +1801,12 @@
                             <tr>
                                 <td>Change in Cash</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Change In Cash"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Change In Cash"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Change In Cash"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Change In Cash"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Change In Cash"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Change In Cash"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Change In Cash"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
@@ -1776,108 +1814,108 @@
                             <tr>
                                 <th>Cash From Operating Activities</th>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Total Cash From Operating Activities"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Total Cash From Operating Activities"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Total Cash From Operating Activities"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Total Cash From Operating Activities"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Total Cash From Operating Activities"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <th>{{ round_f(scf_df["Total Cash From Operating Activities"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(scf_df["Total Cash From Operating Activities"][i], 2, 10000000) }}</th>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Capital Expenditure</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Capital Expenditures"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Capital Expenditures"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Capital Expenditures"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Capital Expenditures"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Capital Expenditures"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Capital Expenditures"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Capital Expenditures"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Investments in Marketable & Equity Securities</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Investments"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Investments"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Investments"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Investments"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Investments"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Investments"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Investments"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Other Investing Activities</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Other Cashflows From Investing Activities"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Other Cashflows From Investing Activities"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Cash From Investing Activities</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Total Cashflows From Investing Activities"][i] < 0:%}
-                                <th style="color:red">({{ round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 100000) }})</th>
+                                <th style="color:red">({{ round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 10000000) }})</th>
                                 {% else: %}
-                                <th>{{ round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(scf_df["Total Cashflows From Investing Activities"][i], 2, 10000000) }}</th>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Net Change in Borrowings</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Net Borrowings"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Net Borrowings"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Net Borrowings"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Net Borrowings"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Net Borrowings"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Net Borrowings"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Net Borrowings"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <td>Net Dividends Paid</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Dividends Paid"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Dividends Paid"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Dividends Paid"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Dividends Paid"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Dividends Paid"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Dividends Paid"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Dividends Paid"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}                                	
                             </tr>
                             <tr>
                                 <td>Other Financing Activities</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Other Cashflows From Financing Activities"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Other Cashflows From Financing Activities"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
                             <tr>
                                 <th>Cash From Financing Activities</th>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Total Cash From Financing Activities"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Total Cash From Financing Activities"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Total Cash From Financing Activities"][i] < 0:%}
-                                <th style="color:red">({{ round_f(scf_df["Total Cash From Financing Activities"][i], 2, 100000) }})</th>
+                                <th style="color:red">({{ round_f(scf_df["Total Cash From Financing Activities"][i], 2, 10000000) }})</th>
                                 {% else: %}
-                                <th>{{ round_f(scf_df["Total Cash From Financing Activities"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(scf_df["Total Cash From Financing Activities"][i], 2, 10000000) }}</th>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
@@ -1885,12 +1923,12 @@
                             <tr>
                                 <td>Foreign Exchange Rate Adjustments</td>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Effect Of Exchange Rate"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Effect Of Exchange Rate"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Effect Of Exchange Rate"][i] < 0:%}
-                                <td style="color:red">({{ round_f(scf_df["Effect Of Exchange Rate"][i], 2, 100000) }})</td>
+                                <td style="color:red">({{ round_f(scf_df["Effect Of Exchange Rate"][i], 2, 10000000) }})</td>
                                 {% else: %}
-                                <td>{{ round_f(scf_df["Effect Of Exchange Rate"][i], 2, 100000) }}</td>
+                                <td>{{ round_f(scf_df["Effect Of Exchange Rate"][i], 2, 10000000) }}</td>
                                 {% endif %}
                                 {% endfor %}
                             </tr>
@@ -1898,12 +1936,12 @@
                             <tr>
                                 <th>Net Change in Cash</th>
                                 {% for i in range(scf_df.shape[0]-1, -1, -1): %}
-                                {% if round_f(scf_df["Change In Cash"][i], 2, 100000) == "": %}
+                                {% if round_f(scf_df["Change In Cash"][i], 2, 10000000) == "": %}
                                 <td></td>
                                 {% elif scf_df["Change In Cash"][i] < 0:%}
-                                <th style="color:red">({{ round_f(scf_df["Change In Cash"][i], 2, 100000) }})</th>
+                                <th style="color:red">({{ round_f(scf_df["Change In Cash"][i], 2, 10000000) }})</th>
                                 {% else: %}
-                                <th>{{ round_f(scf_df["Change In Cash"][i], 2, 100000) }}</th>
+                                <th>{{ round_f(scf_df["Change In Cash"][i], 2, 10000000) }}</th>
                                 {% endif %}
                                 {% endfor %}
                             </tr>

@@ -1,13 +1,16 @@
 import yfinance as yf
 import pandas as pd
 from matplotlib.figure import Figure
+import matplotlib.pyplot as plt
 
 
 class StockAggregatedFundamentals:
 
     def __init__(self, company_ticker):
         # Define the yfinance stock ticker
+        self.ticker = company_ticker
         self.stock_yf_ticker = yf.Ticker(company_ticker)
+        self.price_df = yf.download(self.ticker, start="2018-09-19", auto_adjust=True)
 
     def ticker_page_basic_info(self):
         info = {
@@ -46,3 +49,41 @@ class StockAggregatedFundamentals:
 
     def cash_flow(self):
         return self.stock_yf_ticker.cashflow.T
+
+    def create_figure(self, plot_heading):
+        if plot_heading == "price":
+            fig = Figure()
+            axis = fig.add_subplot(1, 1, 1)
+            axis.plot(self.price_df['Close'])
+            return fig
+        elif plot_heading == "pe":
+            earnings = []  # 2019, 2020, 2021
+            income_statement = self.stock_yf_ticker.financials.T
+            for i in range(income_statement.shape[0] - 2, -1, -1):
+                earnings.append(round(income_statement["Net Income"][i], 2))
+            num_shares = self.stock_yf_ticker.info["sharesOutstanding"]
+            eps = []
+            for i in range(len(earnings)):
+                eps_calc = earnings[i] / num_shares
+                eps.append(round(eps_calc, 2))
+            pe = []
+            count = 0
+            eps_index = 0
+            for i in range(self.price_df.shape[0]):
+                pe_calc = self.price_df["Close"][i] / eps[eps_index]
+                pe.append(pe_calc)
+                count += 1
+                if count == 250:
+                    eps_index += 1
+                    count = 0
+            fig = Figure()
+            axis = fig.add_subplot(1, 1, 1)
+            axis.plot(pe)
+            return fig
+
+    def cagr(self):
+        initial_price = self.price_df["Close"][0]
+        final_price = self.price_df["Close"][self.price_df.shape[0] - 1]
+        cagr = pow((final_price / initial_price), (1 / 3)) - 1
+        cagr = round(cagr * 100, 2)
+        return cagr
