@@ -37,7 +37,7 @@ class StockAggregatedFundamentals:
             "enterprise_value": round(self.stock_yf_ticker.info["enterpriseValue"]/10000000, 2),
             "debt_to_equity": self.stock_yf_ticker.info["debtToEquity"],
             "roe": self.stock_yf_ticker.info["returnOnEquity"],
-
+            "floatShares": self.stock_yf_ticker.info["floatShares"]
         }
         return info
 

@@ -73,34 +73,34 @@
                         <p class="unit-heading">Market Cap<a class="avatar"
                                 data-tooltip="Price of Share x No. of Shares Outstanding"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">₹ {{ info['market_cap'] }} Cr</p>
+                        <p class="value">₹ {{ round_f(info['market_cap'], 2, 1) }} Cr</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">Ent Value<a class="avatar" data-tooltip="Market Cap + Debt - Cash"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">₹ {{ info['enterprise_value'] }} Cr</p>
+                        <p class="value">₹ {{ round_f(info['enterprise_value'], 2, 1) }} Cr</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">No. of Shares<a class="avatar" data-tooltip="Dummy Data"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['shares_outstanding'] }} Cr</p>
+                        <p class="value">{{ info['shares_outstanding'] }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <p class="unit-heading">P/E<a class="avatar" data-tooltip="Price of Share / EPS"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['price_to_earnings'] }}</p>
+                        <p class="value">{{ round_f(info['price_to_earnings'], 2, 1) }}</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">P/B<a class="avatar" data-tooltip="Price of Share / Book Value"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['price_to_book'] }}</p>
+                        <p class="value">{{ round_f(info['price_to_book'], 2, 1) }}</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">EPS<a class="avatar" data-tooltip="Net Earnings / No. of Shares"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">₹ {{ info['eps'] }}</p>
+                        <p class="value">₹ {{ round_f(info['eps'], 2, 1) }}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -108,31 +108,31 @@
                         <p class="unit-heading">Div Yield<a class="avatar"
                                 data-tooltip="Annual Dividend Per Share / Current Share Price"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['dividend_yield'] }}%</p>
+                        <p class="value">{{ round_f(info['dividend_yield'], 2, 1) }}%</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">5 Yr CAGR<a class="avatar"
                                 data-tooltip="Return generated per year for 5 years"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['five_yr_avg_return'] }}%</p>
+                        <p class="value">{{ round_f(info['five_yr_avg_return'], 2, 1) }}%</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">Book Value<a class="avatar"
                                 data-tooltip="Stockholders' Equity / Shares Outstanding"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">₹ {{ info['book_value'] }}</p>
+                        <p class="value">₹ {{ round_f(info['book_value'], 2, 1) }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <p class="unit-heading">Cash<a class="avatar" data-tooltip="Balance Sheet Line Item"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">₹ {{ info['cash'] }} Cr</p>
+                        <p class="value">₹ {{ round_f(info['cash'], 2, 1) }} Cr</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">Debt<a class="avatar" data-tooltip="Short Term + Long Term Debt"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">₹ {{ info['debt'] }} Cr</p>
+                        <p class="value">₹ {{ round_f(info['debt'], 2, 1) }} Cr</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">Face Value<a class="avatar"
@@ -143,21 +143,21 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <p class="unit-heading">Prom. Holding<a class="avatar"
-                                data-tooltip="Percentage of shares held by the promoters"
+                        <p class="unit-heading">Floating Shares<a class="avatar"
+                                data-tooltip="Num Shares available to trade"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['insider_holding'] }}%</p>
+                        <p class="value">{{ round_f(info['floatShares'], 2, 1) }}</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">Debt to Equity<a class="avatar"
                                 data-tooltip="Total Liability / Shareholders' Equity"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['debt_to_equity'] }}%</p>
+                        <p class="value">{{ round_f(info['debt_to_equity'], 2, 1) }}%</p>
                     </div>
                     <div class="col">
                         <p class="unit-heading">ROE<a class="avatar" data-tooltip="Net Income / Shareholders' Equity"
                                 style="font-size:0.8rem; margin-left:10px;"><i class="fas fa-info-circle"></i></a></p>
-                        <p class="value">{{ info['roe'] }}%</p>
+                        <p class="value">{{ round_f(info['roe'], 2, 1) }}%</p>
                     </div>
                 </div>
             </div>
