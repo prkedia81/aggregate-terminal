@@ -69,7 +69,7 @@ class StockAggregatedFundamentals:
             pe = []
             count = 0
             eps_index = 0
-            for i in range(self.price_df.shape[0]):
+            for i in range(self.price_df.shape[0]-1):
                 pe_calc = self.price_df["Close"][i] / eps[eps_index]
                 pe.append(pe_calc)
                 count += 1
